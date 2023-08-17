@@ -43,7 +43,9 @@ constraint emp_pk primary key(empno) 이런 식으로~
 
 constraint key 로는 foreign key 설정도 할 수 있다
 하위 테이블에서 마스터 테이블을 참조하면 된다
+````
 constraint dept_fk foreign key(deptno)
   references dept(deptno)
+```
 (EMP 테이블이 DEPT 테이블을 참조했다)
 
