@@ -38,6 +38,10 @@ CREATE TABLE EMP(
 
 대충 이런 식으로 한다
 
+empno는 number~
+emane은 varchar2~
+default 설정도 가능
+
 primary key 설정은 constraint문으로 할 수도 있다. 
 constraint emp_pk primary key(empno) 이런 식으로~
 
@@ -45,7 +49,12 @@ constraint key 로는 foreign key 설정도 할 수 있다
 하위 테이블에서 마스터 테이블을 참조하면 된다
 ```
 constraint dept_fk foreign key(deptno)
-  references dept(deptno)
+   references dept(deptno)
+   ON DELETE CASCADE
 ```
 (EMP 테이블이 DEPT 테이블을 참조했다)
 
+CASCADE란 단어 뜻대로 단계적으로 적용되는 것을 의미한다 위 예시에선 DEPT 테이블이 삭제되면 EMP 테이블도 삭제되는 역할을 한다
+나중에 DELETE 구문에서도 활용 예제가 있다
+
+### ALTER
