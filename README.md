@@ -159,4 +159,29 @@ SELECT ENAME || '씨' FROM Table;
 
   DB에 부하를 주는 작업이므로 INDEX 등 사용해서 정렬 회피를 할 수 있다.
 
+- 특수 키워드
+  - DISTINCT<br/>
+    칼럼명 앞에 붙여 중복된 데이터를 제거해준다<br/>
+    SELECT DEPTNO FROM EMP ORDER BY DEPTNO;<br/>
+    →SELECT DISTINCT DEPTNO FROM EMP ORDER BY DEPTNO;
+    
+  - 별명<br/>
+    SELECT ENAME AS "이름" FROM EMP a WHERE a.EMPNO = 100;<br/>
+    ENAME이 이름으로 표기된다. EMP라는 테이블을 코드상에서 a로 표현할 수 있다.
+
+### WHERE
+
+비교 연산자, 부정, 논리, 비교 연산자 등으로 사용 가능하다
+SQL만의 연산자도 있음.
+
+https://crazydeer.tistory.com/entry/SQL-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A2%85%EB%A5%98-between-like-in-is-null-%EC%97%B0%EC%82%B0%EC%9E%90
+
+참고.
+
+- LIKE
+  %와 _를 사용해서 찾는다
+  박% -> 박으로 시작하는 것들
+  박_현 -> 박종현, 박지현... 등 한 글자가 들어간 자리만 찾는다.
+
+- IN
   
