@@ -178,10 +178,17 @@ https://crazydeer.tistory.com/entry/SQL-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A2%85%EB
 
 참고.
 
-- LIKE
-  %와 _를 사용해서 찾는다
-  박% -> 박으로 시작하는 것들
+- LIKE<br/>
+  %와 _를 사용해서 찾는다<br/>
+  박% -> 박으로 시작하는 것들<br/>
   박_현 -> 박종현, 박지현... 등 한 글자가 들어간 자리만 찾는다.
 
-- IN
-  
+- IN<br/>
+  SELECT ~ WHERE JOB IN ('AGENT', 'COOK', 'ATHLETE');<br/>
+  IN 뒤에 있는 것을 모두 탐색한다. 위 예시에서 3가지 모두 만족할 필요가 없고 1가지만 만족할 시 검색된다.<br/>
+  SELECT ~ WHERE (JOB, ENAME) IN ('FIREFIGHTER', 11), ('COOK', 22);<br/>
+  이런 식으로 서로 짝을 지어서 찾을 수도 있다.
+
+### GROUP BY
+
+테이블의 일정 행들을 종합해 합계, 평균, 편차 등으로 나타낸다.<br/>
