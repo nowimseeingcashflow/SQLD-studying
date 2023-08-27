@@ -192,3 +192,33 @@ https://crazydeer.tistory.com/entry/SQL-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A2%85%EB
 ### GROUP BY
 
 테이블의 일정 행들을 종합해 합계, 평균, 편차 등으로 나타낸다.<br/>
+종합한 행에 HAVING 키워드로 조건을 걸 수도 있다.
+
+```
+SELECT DEPTNO, SUM(E_AGE)
+FROM EMP
+GROUP BY DEPTNO
+HAVING SUM(E_AGE) > 1000
+```
+
+SUM() 부분은 다른 여러 함수들로 대체 가능하며 함수들로는<br/>
+COUNT(), AVG(), MAX(), MIN(), STDDEV(), VARIAN()<br/>
+등이 있다.
+
+이 중 COUNT()는 좀 특이한 게,<br/>
+SELECT COUNT(*) FROM EMP;<br/>
+이렇게 쓰면 EMP의 모든 행들의 개수를 보여주지만,
+
+SELECT COUNT(E_AGE) FROM EMP;<br/>
+이렇게 쓸 시 E_AGE 행의 개수들 중 NULL을 가지고 있는 건 보여주지 않는다.
+
+### Type Casting
+
+일단 형변환 함수들이 있다.<br/>
+TO_NUMBER(), TO_CHAR(), TO_DATE()
+
+이런 타입 변환 함수를 쓰지 않아도 DB 관리 시스템 선에서 암시적으로 형변환시켜주긴 하나,<br/>
+인덱스 칼럼에다가는 함수를 직접 쓰지 않으면 인덱스가 깨진다. 주의할 것.
+
+### Built-in 함수
+DUAL 테이블
