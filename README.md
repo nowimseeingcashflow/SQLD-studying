@@ -157,7 +157,8 @@ SELECT ENAME || '씨' FROM Table;
   ORDER BY ENAME ASC (ENAME으로 오름차순) ASC가 디폴트다.<br/>
   ORDER BY EMPNO DESC (EMPNO로 내림차순)
 
-  DB에 부하를 주는 작업이므로 INDEX 등 사용해서 정렬 회피를 할 수 있다.
+  DB에 부하를 주는 작업이므로 INDEX 등 사용해서 정렬 회피를 할 수 있다.<br/>
+  그러나 인덱스도 이래저래 유용하기만 한 것은 아니니 잘 판단해서 쓰자.
 
 - 특수 키워드
   - DISTINCT<br/>
@@ -221,4 +222,25 @@ TO_NUMBER(), TO_CHAR(), TO_DATE()
 인덱스 칼럼에다가는 함수를 직접 쓰지 않으면 인덱스가 깨진다. 주의할 것.
 
 ### Built-in 함수
-DUAL 테이블
+
+DUAL 테이블이라는 게 있다.<br/>
+기본적으로 내장된 테이블이며 SELECT 등을 테스트해보기 위해 존재하는 테이블이다.
+
+#### 문자열 함수
+
+이런 거 나열하는 건 딱 질색이지만, 시험이니까...
+
+- ASCII(string) : 문자, 숫자를 ASCII로 변환<br/>
+- CHAR(ASCII) : ASCII를 문자로 변환<br/>
+- SUBSTR(string, m, n) : 문자열에서 m번째 위치부터 n개를 자름<br/>
+- CONCAT(string1, string2) : 문자열 1과 2를 붙인다<br/>
+- LOWER(string) : 소문자로 변환<br/>
+- UPPER(string) : 대문자로 변환<br/>
+- LEN(string) : 문자열 길이 나타냄(공백 포함)<br/>
+- TRIM(string, char) : 양 끝에 있는 char를 잘라냄 char 지정 안 할 시 공백 자름. LTRIM, RTRIM도 있다.
+
+  #### 날짜형 함수
+
+  일단 SYSDATE 
+
+- 
