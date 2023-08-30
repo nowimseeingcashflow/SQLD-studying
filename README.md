@@ -241,6 +241,24 @@ DUAL 테이블이라는 게 있다.<br/>
 
   #### 날짜형 함수
 
-  일단 SYSDATE 
+  SYSDATE는 지금 시간을 보여주고, 타입은 날짜 타입이다.
 
-- 
+- EXTRACT(YEAR | MONTH | DAY FROM 날짜) : 년, 월, 일을 추출해 보여준다.<br/>
+- TO_CHAR(날짜, 'YYYYMMDD') : 날짜형 함수는 아니지만, 날짜형 타입을 다룬다.
+
+  #### 숫자형 함수
+
+- ABS(NUM) : 절댓값<br/>
+- SIGN(NUM) : 양수, 음수, 0인지 구별<br/>
+- MOD(NUM1, NUM2) : 숫자1을 숫자2로 나누어 나머지를 계산한다. % 써도 됨.<br/>
+- CEIL(NUM) : 올림. CEILING 해도 똑같다.<br/>
+- FLOOR(NUM) : 내림<br/>
+- ROUND(NUM. M) : M번째 자리에서 반올림<br/>
+- TRUNC(NUM, M) : M번째 자리에서 절삭. 둘 다 M 생략 시 디폴트값 0
+
+### DECODE
+
+DECODE(EMPNO, 1000, 'TRUE', 'FALSE')
+
+1, 2번이 같으면 3번 출력, 다르면 4번 출력
+
