@@ -258,7 +258,33 @@ DUAL 테이블이라는 게 있다.<br/>
 
 ### DECODE
 
-DECODE(EMPNO, 1000, 'TRUE', 'FALSE')
+SELECT DECODE(EMPNO, 1000, 'TRUE', 'FALSE')<br/>
+FROM EMP;
 
-1, 2번이 같으면 3번 출력, 다르면 4번 출력
+괄호 안의 1, 2번이 같으면 3번 출력, 다르면 4번 출력
 
+### CASE
+
+SELECT CASE [???]<br/>
+   WHEN ~ THEN<br/>
+   WHEN ~ THEN<br/>
+   ELSE ~<br/>
+ END FROM EMP;
+
+CASE를 따지는 그런 구문이당
+
+### ROW
+
+- ROWNUM<br/>
+  ORACLE에서 SELECT문의 결과에 대해 주어진 일련번호다.<br/>
+  보통 보여줄 행 수를 제한하려고 쓴다.
+
+  SELECT * FROM EMP<br/>
+  WHERE ROWNUM < 2;
+
+  SELECT * FROM (SELECT ROWNUM a, ENAME FROM EMP)<br/>
+  WHERE a <=5;
+
+  여러 줄을 쓸 땐 이렇게 ..
+
+  
