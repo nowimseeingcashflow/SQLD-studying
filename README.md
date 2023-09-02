@@ -287,4 +287,58 @@ CASE를 따지는 그런 구문이당
 
   여러 줄을 쓸 땐 이렇게 ..
 
-  
+- ROWID<br/>
+  SELECT문으로 확인 가능한 데이터마다 가지는 유일한 값이다. 이것도 ORACLE에 있음.<br/>
+  오브젝트 번호, 상대 파일 번호, 블록 번호, 데이터 번호로 나뉜다. 길이는 6363
+
+### WITH
+
+Subquery를 임시 테이블, 뷰같은 느낌으로 사용할 수 있다.<br/>
+```
+WITH W_EMP AS
+(SELECT * FROM EMP WHERE DEPTNO = 30)
+SELECT * FROM W_EMP;
+```
+## DCL
+
+### GRANT
+
+권한을 부여한다.<br/>
+GRANT privileges ON Table TO user;<br/>
+
+PRIVILEGES 부분에 들어갈 수 있는 권한에는 이러한 것들이 있다.
+
+SECECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, INDEX, ALL (모든 권한)
+
+유저명 뒤에 WITH GRANT OPTION 또는 WITH ADMIN OPTION을 붙이면 권한을 줄 권한도 줄 수 있다.
+
+### REVOKE
+
+권한 회수문이다.<br/>
+REVOKE privilieges ON Table FROM user;
+
+## TCL
+
+### COMMIT
+
+변경된 데이터가 있으면 DB에 바로 반영되지 않는다.<br/>
+커밋을 해줘야 한다. 마치 깃처럼...<br/>
+AUTO-COMMIT 기능이 없다면 커밋을 생활화해야 한다.<br/>
+이 글도 커밋을 안해서 몇 번 날려먹은 적이 있다. SO SAD
+
+### ROLLBACK
+
+데이터에 대한 변경을 모두 철회하고 트랜잭션을 종료한다.<br/>
+즉 저번 커밋 상태로 되돌린다.<br/>
+LOCK 상태가 풀려 다른 사용자도 DB 행을 조작할 수 있게 된다.
+
+### SAVEPOINT
+
+COMMIT을 하기 전 세이브포인트를 몇 개 지정한다.<br/>
+SAVEPOINT SavepointName;<br/>
+하면 된다.
+
+ROLLBACK TO SavepointName; 을 통해 특정 세이브포인트로 돌아갈 수 있다.<br/>
+그냥 ROLLBACK 해버리면 싹 초기화되기 때문에 조심.
+
+# SQL 활용편
