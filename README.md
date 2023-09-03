@@ -356,6 +356,45 @@ SELECT * FROM A, B WHERE A.DEPTNO = B.DEPTNO;
 
 추가적인 조건을 걸 수도 있다.
 
-### INNER JOIN
-
+- INNER JOIN<br/>
 SELECT * FROM A INNER JOIN B IN A.DEPTNO = B.DEPTNO;
+
+사용법은 비슷하다.
+
+대신 Explain plan을 들여다보면, EQUI JOIN만 HASH JOIN을 사용한다는 차이점이 있다.
+
+- INTERSECT<br/>
+교집합을 조회하는 키워드이다.<br/>
+```
+SELECT DEPTNO FROM EMP
+INTERSECT
+SELECT DEPTNO FROM DEPT;
+```
+
+두 테이블에서 공통되는 값을 보여줄 것이다.
+
+- NON-EQUI JOIN<br/>
+두 테이블을 조회할 때 =이 아닌 부등호들을 활용한다면 NON-EQUI JOIN이 될 것이다.<br/>
+아예 겹치지 않는 부분들을 조회할 것이기 때문에..
+
+### OUTER JOIN
+```
+SELECT * FROM A LEFT OUTER JOIN B
+ON A.DEPTNO = B.DEPTNO;
+
+SELECT * FROM A, B WHERE A.DEPTNO (+)= B.DEPTNO;  (오라클 방식)
+```
+
+교집합을 조회하고 또한 한쪽에만 있는 데이터들도 포함시킨다.<br/>
+LEFT OUTER JOIN, RIGHT OUTER JOIN, 그리고 FULL OUTER JOIN이 있다.
+
+![OUTERJOIN](https://github.com/nowimseeingcashflow/SQLD-studying/assets/102157329/1a9f013e-4582-437a-9b0e-a57000957fde)
+
+이런 느낌으로...
+
+### CROSS JOIN
+
+SELECT * FROM A CROSS JOIN B;
+
+그냥 조건 없이 다 조인한다.<br/>
+카테시안 곱이 발생한다. A 행 개수 * B 행 개수.
