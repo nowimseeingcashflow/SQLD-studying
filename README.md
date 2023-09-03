@@ -342,3 +342,20 @@ ROLLBACK TO SavepointName; 을 통해 특정 세이브포인트로 돌아갈 수
 그냥 ROLLBACK 해버리면 싹 초기화되기 때문에 조심.
 
 # SQL 활용편
+
+## Join
+
+여러 개의 릴레이션을 사용해 새 릴레이션을 만드는 과정이다. 기본적으로 교집합을 만든다.<br/>
+![EQUIJOIN](https://github.com/nowimseeingcashflow/SQLD-studying/assets/102157329/2a1d86ba-23da-4bb1-ad2d-0b26222b3afd)
+
+이 두 개를 어떻게 합칠 수 있을까?
+
+### EQUI JOIN
+
+SELECT * FROM A, B WHERE A.DEPTNO = B.DEPTNO;
+
+추가적인 조건을 걸 수도 있다.
+
+### INNER JOIN
+
+SELECT * FROM A INNER JOIN B IN A.DEPTNO = B.DEPTNO;
