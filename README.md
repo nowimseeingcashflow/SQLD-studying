@@ -39,7 +39,7 @@ CREATE TABLE EMP(
 대충 이런 식으로 한다.
 
 empno는 number~<br/>
-emane은 varchar2~<br/>
+ename은 varchar2~<br/>
 default 설정도 가능
 
 primary key 설정은 constraint문으로 할 수도 있다. <br/>
@@ -398,3 +398,25 @@ SELECT * FROM A CROSS JOIN B;
 
 그냥 조건 없이 다 조인한다.<br/>
 카테시안 곱이 발생한다. A 행 개수 * B 행 개수.
+
+### UNION
+```
+SELECT A FROM EMP
+UNION
+SELECT A FROM DEPT;
+```
+
+이 방법을 통해 두 테이블을 합칠 수 있다.<br/>
+두 테이블은 행 수, 행 내 데이터 등이 같아야 하며 겹치는 부분들은 1개만 나열된다. 이 과정에서 Sorting이 발생한다.
+
+Sort하지 않는 UNION도 있다. 키워드는 UNION ALL
+
+### MINUS
+
+UNION이 합집합이라면 MINUS는 차집합을 보여준다.<br/>
+차집합이기 때문에 앞의 테이블에 있는 값들 중 뒷 테이블에 있는 값을 제거해서 보여준다.<br/>
+UNION과 사용 방법은 동일하다. MS-SQL에서는 EXCEPT라는 키워드로 쓰인다.
+
+## 계층형 조회
+
+
