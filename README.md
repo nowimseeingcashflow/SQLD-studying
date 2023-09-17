@@ -1,6 +1,9 @@
 안녕하세요.<br/>
 자격증 취득을 위한 공부를 기록하려고 합니다.
 
+AD 관련 공부도 하고 있습니다.<br/>
+https://blog.naver.com/quest_kor/221487945625
+
 데이터 모델링의 이해 부분은 블로그에 작성했습니다.<br/>
 https://blog.naver.com/happyphjm1/223178609287
 
