@@ -422,4 +422,39 @@ UNION과 사용 방법은 동일하다. MS-SQL에서는 EXCEPT라는 키워드�
 
 ## 계층형 조회
 
+connect by ~ 를 사용하는 트리형 구조의 질의.<br/>
+
+```
+SELECT MAX(LEVEL) FROM MyTable.EMP
+START WITH MGR IS NULL
+CONNECT BY PRIOR EMPNO = MGR;
+```
+
+MAX(LEVEL)는 가장 깊은 층(마지막 Leaf node)를 나타낸다.<br/>
+MGR은 부모 노드를 의미한다. 그렇기에 가장 첫 번째 부모 노드부터 시작하는 것.<br/>
+LPAD 함수를 사용하여 시각적으로 더 잘 드러나게 할 수 있다.
+
+```
+SELECT LEVEL, LPAD(' ', 4 * (LEVEL - 1)) || EMPNO, MGR, CONNECT_BY_ISLEAF FROM MyTable.EMP
+START WITH MGR IS NULL
+CONNECT BY PRIOR EMPNO = MGR;
+```
+
+깊이에 따라 공백이 띄워지기 때문에 아주 눈에 잘 들어온다.
+
+### 키워드
+- LEVEL : 항목의 깊이를 의미한다. 1이 가장 상위 레벨.
+- CONNECT_BY_ROOT : 계층 구조에서 가장 최상위값을 표시한다.
+- CONNECT_BY_ISLEAF : 계층 구조에서 가장 최하위값을 표시한다.
+- SYS_CONNECT_BY_PATH : 계층 구조의 전체 전개 경로를 표시한다.
+- NOCYCLE : 순환 구조가 발생지점까지만 전개된다.
+- CONNECT_BY_ISCYCLE : 순환 구조 발생 지점을 표시한다.
+
+### 계층형 조회
+
+- START WITH ~ : 계층 전개의 시작 위치를 지정.
+- PRIOR 자식 = 부모 : 부모 → 자식의 순방향 전개.
+- PRIOR 부모 = 자식 : 자식 → 부모의 순방향 전개.
+- NOCYCLE : 데이터를 전개할 때 이미 조회했으면 순환 구조가 형성되는데 이 때 이 사이클을 없앤다.
+- ORDER SIBLINGS BY 칼럼명 : 동일한 LEVEL인 형제노드 사이에서 정렬 수행.
 
