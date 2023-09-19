@@ -458,3 +458,26 @@ CONNECT BY PRIOR EMPNO = MGR;
 - NOCYCLE : 데이터를 전개할 때 이미 조회했으면 순환 구조가 형성되는데 이 때 이 사이클을 없앤다.
 - ORDER SIBLINGS BY 칼럼명 : 동일한 LEVEL인 형제노드 사이에서 정렬 수행.
 
+## Subquery
+
+서브쿼리란... 쿼리 안의 쿼리 즉 SELECT문 안에서 SELECT문을 다시 사용하는 것이다.<br/>
+FROM문 안에서 SELECT문을 사용하는 인라인 뷰, SELECT문 안의 SELECT문인 Scala Subquery가 있다.
+
+```
+SELECT * FROM EMP
+WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE DEPTNO = 10);
+```
+
+### 반환 행 개수
+단일 행을 반환하는 서브쿼리와 다중 행을 반환하는 서브쿼리가 차이가 있다.<br/>
+
+- 단일 행 서브쿼리
+  서브쿼리를 실행시켰을 때 한 행만 조회된다.<br/>
+  비교 연산자인 =, <, <= 등을 사용한다.
+
+- 다중 행 서브쿼리
+  반면 이 친구는 다중 행 연산자를 사용해야 한다.
+  - IN : OR 연산이다. 다중 행 중에서 조건을 만족하는 것이 있다면 참.
+  - ALL : 다중 행 중에서 모두 조건을 만족해야 참이다.
+  - ANY : 다중 행 중에서 한 가지 조건을 만족하면 참이다.
+  - EXISTS : 다중 행 검색해서 있으면 SELECT 1, 즉 참을 반환해준다.
