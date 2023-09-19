@@ -412,7 +412,7 @@ SELECT A FROM DEPT;
 이 방법을 통해 두 테이블을 합칠 수 있다.<br/>
 두 테이블은 행 수, 행 내 데이터 등이 같아야 하며 겹치는 부분들은 1개만 나열된다. 이 과정에서 Sorting이 발생한다.
 
-Sort하지 않는 UNION도 있다. 키워드는 UNION ALL
+Sort하지 않고 중복된 것 모두 집어넣는 UNION도 있다. 키워드는 UNION ALL.
 
 ### MINUS
 
@@ -461,7 +461,7 @@ CONNECT BY PRIOR EMPNO = MGR;
 ## Subquery
 
 서브쿼리란... 쿼리 안의 쿼리 즉 SELECT문 안에서 SELECT문을 다시 사용하는 것이다.<br/>
-FROM문 안에서 SELECT문을 사용하는 인라인 뷰, SELECT문 안의 SELECT문인 Scala Subquery가 있다.
+FROM문 안에서 SELECT문을 사용하는 인라인 뷰, SELECT문 안의 SELECT문인 Scala Subquery 등이 있다.
 
 ```
 SELECT * FROM EMP
@@ -481,3 +481,26 @@ WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE DEPTNO = 10);
   - ALL : 다중 행 중에서 모두 조건을 만족해야 참이다.
   - ANY : 다중 행 중에서 한 가지 조건을 만족하면 참이다.
   - EXISTS : 다중 행 검색해서 있으면 SELECT 1, 즉 참을 반환해준다.
+
+### Scala Subquery
+
+```
+SELECT ENAME AS "이름","급여",
+               (SELECT AVG(SAL) FROM EMP) AS "평균급여"
+FROM EMP WHERE EMPNO = 1000;
+```
+여기서 평균급여의 개수가 여러 개이면 어떻게 될까?<br/>
+문제가 있을 것이다... 스칼라 서브쿼리는 한 행, 한 칼럼만 반환하게 된다.<br/>
+여러 항을 반환하면 오류가 발생.
+
+### Correlated Subquery
+
+Subquery 내에서 Main query 내의 칼럼을 사용하는 것이다.<br/>
+```
+SELECT EMPNO, ENAME, DEPTNO, MGR, JOB, SAL
+FROM EMP a
+WHERE a.DEPTNO =
+   (SELECT DEPTNO FROM DEPT b
+   WHERE b.DEPTNO = a.DEPTNO);
+```
+WHERE문 안에서 서브쿼리를 사용, 그러나 그 서브쿼리에서 메인 쿼리인 a를 호출한다. 이것이 연관 서브쿼리.
