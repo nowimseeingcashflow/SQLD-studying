@@ -504,3 +504,9 @@ WHERE a.DEPTNO =
    WHERE b.DEPTNO = a.DEPTNO);
 ```
 WHERE문 안에서 서브쿼리를 사용, 그러나 그 서브쿼리에서 메인 쿼리인 a를 호출한다. 이것이 연관 서브쿼리.
+
+## 그룹 함수
+### ROLLUP
+
+GROUP BY의 칼럼에 대하여 Subtotal을 만든다.<br/>
+GROUP BY가 어떤 칼럼에 대해 총합계를 보여주는 역할을 하는데 ROLLUP 함수가 여기서 이걸 대신해 총합계를 보여준다.<br/>
