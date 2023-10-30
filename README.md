@@ -510,3 +510,33 @@ WHERE문 안에서 서브쿼리를 사용, 그러나 그 서브쿼리에서 메�
 
 GROUP BY의 칼럼에 대하여 Subtotal을 만든다.<br/>
 GROUP BY가 어떤 칼럼에 대해 총합계를 보여주는 역할을 하는데 ROLLUP 함수가 여기서 이걸 대신해 총합계를 보여준다.<br/>
+
+### GROUPING SETS
+
+GROUP BY에 나오는 칼럼들으로 여러 가지 소계를 만들어준다.<br/>
+GROUPING SETS에 넣은 칼럼들으로 소계를 도출한다.
+
+### CUBE
+
+다차원 집계를 제공해 다양한 데이터 분석을 가능하게 한다.<br/>
+예를 들어 칼럼에 DEPTNO(부서)와 JOB(직업)이 있다고 한다면,<br/>
+부서 내 직업별 소계, 직업별 소계, 부서별 소계, 그리고 전체 소계 이렇게 모든 차원의 집계를 제공할 것이다.
+
+### GROUPING
+
+GROUPING 함수를 사용하면 ROLLUP, CUBE, GROUPING SETS 함수들을 사용한 행은 1을 반환한다.<br/>
+실제로 1을 보여주려고 쓰는 함수가 아니겠지? 테이블을 만들 때 편의를 위해 사용한다.
+
+## 윈도우 함수
+
+행과 행 간의 관계를 정의하기 위해 제공된다.
+
+```
+SELECT WINFUNC(...ARGUMENTS)
+OVER(ORDER BY WINDOWING절
+ 또는 PARTITION BY 칼럼)
+FROM 테이블;
+```
+대충 이렇게 쓴다
+
+귀찮은 기능이네
