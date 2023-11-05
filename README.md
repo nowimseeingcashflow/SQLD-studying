@@ -485,7 +485,7 @@ WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE DEPTNO = 10);
 ### Scala Subquery
 
 ```
-SELECT ENAME AS "이름","급여",
+SELECT ENAME AS "이름", SAL AS "급여",
                (SELECT AVG(SAL) FROM EMP) AS "평균급여"
 FROM EMP WHERE EMPNO = 1000;
 ```
@@ -539,4 +539,20 @@ FROM 테이블;
 ```
 대충 이렇게 쓴다
 
-귀찮은 기능이네
+```
+SELECT EMPNO, ENAME, SAL, SUM(SAL)
+      OVER(ORDER BY SAL
+         ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "합계"
+FROM EMP;
+```
+
+![ㄹㅇㄴㄻㄴㅇㄹㅇㄴㅁ](https://github.com/nowimseeingcashflow/SQLD-studying/assets/102157329/96f593bc-09ea-4af6-ba87-24447df998ed)
+
+왜 이런 모양으로 다 같은 값이 나올까?<br/>
+각 행에서 UNBOUNDED하게 위아래 SAL을 모두 더했기 때문이다.<br/>
+이러면 의미없으니... 이런 모양을 방지하기 위해<br/>
+CURRENT ROW나 5 PRECEDING과 같이 값을 지정해서 PRECEDING 또는 FOLLOWING 행을 지정해줄 수 있다.
+<br/>
+ROWS 대신에 RANGE도 사용하는데 사실 왜 있는지 모르겠다. RANGE를 쓰면 중복되는 값은 숫자가 이상하게 나온다.<br/>
+https://superkong1.tistory.com/42 참조.
+
