@@ -549,10 +549,10 @@ FROM EMP;
 ![ㄹㅇㄴㄻㄴㅇㄹㅇㄴㅁ](https://github.com/nowimseeingcashflow/SQLD-studying/assets/102157329/96f593bc-09ea-4af6-ba87-24447df998ed)
 
 왜 이런 모양으로 다 같은 값이 나올까?<br/>
-각 행에서 UNBOUNDED하게 위아래 SAL을 모두 더했기 때문이다.<br/>
+각 행에서 UNBOUNDED하게 위아래 SAL을 모두 더했기 때문이다.<br/><br/>
 이러면 의미없으니... 이런 모양을 방지하기 위해<br/>
-CURRENT ROW나 5 PRECEDING과 같이 값을 지정해서 PRECEDING 또는 FOLLOWING 행을 지정해줄 수 있다.
-<br/>
+CURRENT ROW나 5 PRECEDING과 같이 앞에 값을 지정해서 PRECEDING 또는 FOLLOWING 행을 더할 수 있다.
+<br/><br/>
 ROWS 대신에 RANGE도 사용하는데 사실 왜 있는지 모르겠다. RANGE를 쓰면 중복되는 값은 숫자가 이상하게 나온다.<br/>
 https://superkong1.tistory.com/42 참조.
 
