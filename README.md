@@ -556,3 +556,28 @@ CURRENT ROW나 5 PRECEDING과 같이 앞에 값을 지정해서 PRECEDING 또는
 ROWS 대신에 RANGE도 사용하는데 사실 왜 있는지 모르겠다. RANGE를 쓰면 중복되는 값은 숫자가 이상하게 나온다.<br/>
 https://superkong1.tistory.com/42 참조.
 
+### 순위 함수
+
+윈도우 함수 중에서 행 간의 순위를 매기는 데에 사용할 수 있는 함수이다.<br/>
+RANK(), DENSE_RANK() 그리고 ROW_NUMBER()이 있고, 사용법은 같으나 출력값만 약간씩 달라진다.<br/>
+```
+SELECT ENAME, SAL,
+RANK() OVER(ORDER BY SAL DESC) ALL_RANK,
+DENSE_RANK() OVER(ORDER BY SAL) DENSERANKY,
+ROW_NUMBER() OVER(ORDER BY SAL) ROWNUMB
+FROM EMP;
+```
+
+RANK()는 일반적인 순위를 보여줄 것이고,<br/><br/>
+DENSE_RANK()는 공동 순위가 있어도 동일한 순위는 하나의 건수로 계산한다. <br/>예를 들어 4명의 사람이 있고 1등 2등 2등 다음에 누가 와야 한다면 RANK()에서는 4등이 나와야겠지만 DENSE_RANK()는 3등이 나온다.<br/><br/>
+ROW_NUMBER()에서는 공동 순위가 있더라도 1234 순으로 간다.
+
+### 집계 함수
+
+PARTITION 별로 값을 보여주는 함수이다.<br/>
+SUM(N), AVG(N), COUNT(N), MAX(N), MIN(N)이 있다.
+
+### 행 순서 관련 함수
+
+상위 행 또는 이후에 나오는 행, 최상위 최하위 행 등을 보여줄 수 있는 함수들이다.<br/>
+FIRST_VALUE(N), LAST_VALUE(N), LAG(N), LEAD(M, INT) 등이 있다.
