@@ -2,7 +2,9 @@
 자격증 취득을 위한 공부를 기록하려고 합니다.
 
 AD 관련 공부도 하고 있습니다.<br/>
-https://blog.naver.com/quest_kor/221487945625
+https://blog.naver.com/quest_kor/221487945625 
+<br/>
+하려고 했는데 영 대우나 향후 전망이 별로인 것 같아서 접었습니다 서버 쪽 공부할 겁니당
 
 데이터 모델링의 이해 부분은 블로그에 작성했습니다.<br/>
 https://blog.naver.com/happyphjm1/223178609287
@@ -580,4 +582,26 @@ SUM(N), AVG(N), COUNT(N), MAX(N), MIN(N)이 있다.
 ### 행 순서 관련 함수
 
 상위 행 또는 이후에 나오는 행, 최상위 최하위 행 등을 보여줄 수 있는 함수들이다.<br/>
-FIRST_VALUE(N), LAST_VALUE(N), LAG(N), LEAD(M, INT) 등이 있다.
+FIRST_VALUE(N), LAST_VALUE(N), LAG(N), LEAD(M, INT=1) 등이 있다.
+
+### 비율 관련 함수
+
+행들을 비율로 나누는 역할을 한다!<br/>
+CUME_DIST(), PERCENT_RANK(), NTILE(INT), RATIO_TO_REPORT() 등이 있다.
+
+## 테이블 파티션
+
+대용량의 테이블을 여러 개의 데이터 파일로 분리해서 저장할 수 있다.<br/><br/>
+파티션의 기준은 여러 가지.. Range를 설정해서, 숫자 값에 따라서 List 파티션도 가능하고, DB 시스템 상에서 해시값을 받아와 분류할 수도 있을 것이다.
+<br/><br/>
+파티션 인덱스는 4가지 종류가 있다.<br/>
+- Global Index : 여러 개의 파티션에서 하나의 인덱스만 사용
+- Local Index : 해당 파티션 별로 각자의 인덱스 사용
+- Prefixed Index : 파티션 키와 인덱스 키가 동일한 것
+- Non Prefixed Index : 파티션 키와 인덱스 키가 다른 것
+
+## SQL 최적화의 원리
+
+DB 관리 시스템에서 SQL 실행 계획을 세우는 옵티마이저라는 게 있다.<br/>
+이 실행 계획을 어떻게 수립할 것인가 방향을 세워주는 게 개발자의 역량이기 때문에 우리가 어떻게 작성하느냐도 중요할 것..<br/>
+<br/>
